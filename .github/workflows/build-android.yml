@@ -1,0 +1,35 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Baixar o projeto
+        uses: actions/checkout@v4
+
+      - name: Configurar .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Instalar .NET MAUI
+        run: dotnet workload install maui
+
+      - name: Restaurar dependências
+        run: dotnet restore MauiAppMinhasCompras.csproj
+
+      - name: Gerar APK Android
+        run: dotnet publish MauiAppMinhasCompras.csproj -f net8.0-android -c Debug -p:AndroidPackageFormat=apk -o ./artifacts
+
+      - name: Salvar APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: MauiAppMinhasCompras-apk
+          path: ./artifacts/*.apk
