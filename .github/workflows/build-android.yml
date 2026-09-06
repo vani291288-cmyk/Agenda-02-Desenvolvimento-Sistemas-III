@@ -14,10 +14,10 @@ jobs:
       - name: Baixar o projeto
         uses: actions/checkout@v4
 
-      - name: Configurar .NET 8
+      - name: Configurar .NET 10
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '10.0.x'
 
       - name: Instalar .NET MAUI
         run: dotnet workload install maui
@@ -26,7 +26,7 @@ jobs:
         run: dotnet restore "Agenda_02_Desenvolvimento_Sistemas_III_MauiAppMinhasCompras/MauiAppMinhasCompras.csproj"
 
       - name: Gerar APK Android
-        run: dotnet publish "Agenda_02_Desenvolvimento_Sistemas_III_MauiAppMinhasCompras/MauiAppMinhasCompras.csproj" -f net8.0-android -c Debug -p:AndroidPackageFormat=apk -o ./artifacts
+        run: dotnet publish "Agenda_02_Desenvolvimento_Sistemas_III_MauiAppMinhasCompras/MauiAppMinhasCompras.csproj" -f net10.0-android -c Debug -p:AndroidPackageFormat=apk -o ./artifacts
 
       - name: Salvar APK
         uses: actions/upload-artifact@v4
