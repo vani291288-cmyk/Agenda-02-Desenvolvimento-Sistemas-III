@@ -26,7 +26,7 @@ jobs:
         run: dotnet restore "Agenda_02_Desenvolvimento_Sistemas_III_MauiAppMinhasCompras/MauiAppMinhasCompras.csproj"
 
       - name: Gerar APK Android
-        run: dotnet publish "Agenda_02_Desenvolvimento_Sistemas_III_MauiAppMinhasCompras/MauiAppMinhasCompras.csproj" -f net10.0-android -c Debug -p:AndroidPackageFormat=apk -o ./artifacts
+        run: dotnet publish "Agenda_02_Desenvolvimento_Sistemas_III_MauiAppMinhasCompras/MauiAppMinhasCompras.csproj" -f net10.0-android35.0 -c Debug -p:AndroidPackageFormat=apk -o ./artifacts
 
       - name: Salvar APK
         uses: actions/upload-artifact@v4
