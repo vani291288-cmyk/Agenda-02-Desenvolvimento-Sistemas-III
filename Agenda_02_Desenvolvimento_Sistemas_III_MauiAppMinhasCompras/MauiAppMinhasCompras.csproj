@@ -11,6 +11,7 @@
     <ApplicationId>com.example.mauiapminhascompras</ApplicationId>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <ApplicationVersion>1</ApplicationVersion>
+    <AndroidAapt2CompileExtraArgs>--legacy</AndroidAapt2CompileExtraArgs>
   </PropertyGroup>
 
   <ItemGroup>
