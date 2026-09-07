@@ -22,11 +22,18 @@ jobs:
       - name: Instalar .NET MAUI
         run: dotnet workload install maui
 
+      - name: Copiar projeto para caminho curto
+        shell: powershell
+        run: |
+          if (Test-Path 'C:\maui') { Remove-Item 'C:\maui' -Recurse -Force }
+          New-Item -ItemType Directory -Path 'C:\maui' | Out-Null
+          Copy-Item 'Agenda_02_Desenvolvimento_Sistemas_III_MauiAppMinhasCompras\*' 'C:\maui' -Recurse -Force
+
       - name: Restaurar dependências
-        run: dotnet restore "Agenda_02_Desenvolvimento_Sistemas_III_MauiAppMinhasCompras/MauiAppMinhasCompras.csproj"
+        run: dotnet restore "C:\maui\MauiAppMinhasCompras.csproj"
 
       - name: Gerar APK Android
-        run: dotnet publish "Agenda_02_Desenvolvimento_Sistemas_III_MauiAppMinhasCompras/MauiAppMinhasCompras.csproj" -f net10.0-android36.0 -c Debug -p:AndroidPackageFormat=apk -o ./artifacts
+        run: dotnet publish "C:\maui\MauiAppMinhasCompras.csproj" -f net10.0-android36.0 -c Debug -p:AndroidPackageFormat=apk -o "${{ github.workspace }}\artifacts"
 
       - name: Salvar APK
         uses: actions/upload-artifact@v4
