@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppMinhasCompras.Views.MainPage"
+             Title="Minhas Compras">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+
+            <Label Text="Cadastro de Produtos"
+                   FontSize="26"
+                   FontAttributes="Bold" />
+
+            <Entry x:Name="DescricaoEntry"
+                   Placeholder="Descrição do produto" />
+
+            <Entry x:Name="QuantidadeEntry"
+                   Placeholder="Quantidade"
+                   Keyboard="Numeric" />
+
+            <Entry x:Name="PrecoEntry"
+                   Placeholder="Preço"
+                   Keyboard="Numeric" />
+
+            <Picker x:Name="CategoriaPicker"
+                    Title="Escolha a categoria" />
+
+            <Button Text="Cadastrar produto"
+                    Clicked="OnCadastrarClicked" />
+
+            <BoxView HeightRequest="1" Margin="0,8" />
+
+            <Label Text="Pesquisar e filtrar"
+                   FontSize="20"
+                   FontAttributes="Bold" />
+
+            <Entry x:Name="BuscaEntry"
+                   Placeholder="Pesquisar produto"
+                   TextChanged="OnBuscaTextChanged" />
+
+            <Picker x:Name="FiltroCategoriaPicker"
+                    Title="Filtrar por categoria"
+                    SelectedIndexChanged="OnFiltroCategoriaChanged" />
+
+            <Button Text="Ver relatório por categoria"
+                    Clicked="OnRelatorioClicked" />
+
+            <Label Text="Produtos cadastrados"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   Margin="0,10,0,0" />
+
+            <CollectionView x:Name="ProdutosCollection"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeThickness="1"
+                                Padding="12"
+                                Margin="0,4">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="{Binding Descricao}"
+                                       FontAttributes="Bold"
+                                       FontSize="18" />
+                                <Label Text="{Binding Categoria, StringFormat='Categoria: {0}'}" />
+                                <Label Text="{Binding Quantidade, StringFormat='Quantidade: {0}'}" />
+                                <Label Text="{Binding Preco, StringFormat='Preço: R$ {0:F2}'}" />
+                                <Label Text="{Binding Total, StringFormat='Total: R$ {0:F2}'}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
