@@ -13,6 +13,8 @@ public class Produto
 
     public double Preco { get; set; }
 
+    public string Categoria { get; set; } = string.Empty;
+
     [Ignore]
     public double Total => Quantidade * Preco;
 }
