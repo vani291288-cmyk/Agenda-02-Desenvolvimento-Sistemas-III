@@ -11,6 +11,15 @@ public class SQLiteDatabaseHelper
     {
         _conn = new SQLiteAsyncConnection(path);
         _conn.CreateTableAsync<Produto>().Wait();
+
+        try
+        {
+            _conn.ExecuteAsync("ALTER TABLE Produto ADD COLUMN Categoria TEXT").Wait();
+        }
+        catch
+        {
+            // A coluna já existe em bancos criados após a atualização.
+        }
     }
 
     public Task<int> Insert(Produto p)
