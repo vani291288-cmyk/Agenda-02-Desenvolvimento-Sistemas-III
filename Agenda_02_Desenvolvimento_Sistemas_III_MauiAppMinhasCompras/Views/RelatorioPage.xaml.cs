@@ -4,6 +4,12 @@ namespace MauiAppMinhasCompras.Views;
 
 public partial class RelatorioPage : ContentPage
 {
+    private sealed class CategoriaRelatorio
+    {
+        public string Categoria { get; set; } = string.Empty;
+        public double Total { get; set; }
+    }
+
     public RelatorioPage()
     {
         InitializeComponent();
